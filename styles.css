@@ -1,0 +1,16 @@
+body{
+    background-color: gray;
+    color: white;
+}
+
+*{
+    color: white;
+}
+
+#btnUpdate{
+    display: none;
+}
+
+footer {
+    color:white;
+}
