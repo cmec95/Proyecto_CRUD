@@ -21,3 +21,28 @@ function ValidateForm(){
     return true;
    
     }
+
+    function ReadData(){
+    
+        let listPeople;
+        if (localStorage.getItem('listPeople') == null){
+           listPeople = [];
+       
+        }else{
+           listPeople = JSON.parse(localStorage.getItem('listPeople'));
+      }
+    
+     var html = "";
+     listPeople.forEach(function(element, index){
+        html += "<tr>";
+        html += "<td>" + element.name +  "</td>";
+        html += "<td>" + element.date +  "</td>";
+        html += "<td>" + element.number +  "</td>";
+        html += '</td><button onclick="deleteData(' + index +')" class="btn btn-danger">Eliminar Dato</button><button onclick="editData(' + index +')" class="btn btn-warning">Editar Dato</button>';
+        html += "</tr>";
+    
+     });
+    
+     document.querySelector('#tableData tbody').innerHTML = html;
+    
+     }
