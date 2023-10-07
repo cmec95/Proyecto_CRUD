@@ -95,3 +95,19 @@ function deleteData(index){
 
 } 
 
+function deleteData(index){
+    let listPeople;
+    if (localStorage.getItem('listPeople') == null){
+       listPeople = [];
+   
+    } else {
+       listPeople = JSON.parse(localStorage.getItem('listPeople'));
+  }
+  listPeople.splice(index, 1)
+  localStorage.setItem('listPeople', JSON.stringify(listPeople));
+
+  ReadData();
+
+}
+
+
