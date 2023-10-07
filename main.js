@@ -106,7 +106,6 @@ function editData(index){
      } else {
         listPeople = JSON.parse(localStorage.getItem('listPeople'));
    }
-
-
+}
 
 
