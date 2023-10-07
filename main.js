@@ -46,3 +46,37 @@ function ValidateForm(){
      document.querySelector('#tableData tbody').innerHTML = html;
     
      }
+
+     document.onload = ReadData();
+ function AddData() {
+    if (ValidateForm() == true){
+        let name = document.getElementById('inputName').value;
+        let date = document.getElementById('inputDate').value;
+        let number = document.getElementById('inputNumber').value;
+
+        var listPeople;
+        if (localStorage.getItem('listPeople') == null) {
+            listPeople = []
+
+        } else {
+            listPeople = JSON.parse(localStorage.getItem('listPeople'));  
+
+        }
+
+        listPeople.push({
+            name: name,
+            date: date,
+            number: number,
+        });
+        localStorage.setItem('listPeople', JSON.stringify(listPeople));
+
+        ReadData();
+
+        document.getElementById('inputName').value = "";
+        document.getElementById('inputDate').value = "";
+        document.getElementById('inputNumber').value = "";
+
+    }
+
+}
+
