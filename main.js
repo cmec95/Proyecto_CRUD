@@ -48,53 +48,52 @@ function ValidateForm(){
      }
 
      document.onload = ReadData();
- function AddData() {
-    if (ValidateForm() == true){
-        let name = document.getElementById('inputName').value;
-        let date = document.getElementById('inputDate').value;
-        let number = document.getElementById('inputNumber').value;
+     function AddData() {
+       if (ValidateForm() == true){
+          let name = document.getElementById('inputName').value;
+          let date = document.getElementById('inputDate').value;
+          let number = document.getElementById('inputNumber').value;
 
-        var listPeople;
-        if (localStorage.getItem('listPeople') == null) {
+          var listPeople;
+          if (localStorage.getItem('listPeople') == null) {
             listPeople = []
 
-        } else {
+          } else {
             listPeople = JSON.parse(localStorage.getItem('listPeople'));  
 
-        }
+          }
 
-        listPeople.push({
-            name: name,
-            date: date,
-            number: number,
-        });
-        localStorage.setItem('listPeople', JSON.stringify(listPeople));
+          listPeople.push({
+              name: name,
+              date: date,
+              number: number,
+        
+            });
+            localStorage.setItem('listPeople', JSON.stringify(listPeople));
 
         ReadData();
-
-        document.getElementById('inputName').value = "";
-        document.getElementById('inputDate').value = "";
-        document.getElementById('inputNumber').value = "";
+         document.getElementById('inputName').value = "";
+         document.getElementById('inputDate').value = ""; 
+         document.getElementById('inputNumber').value = "";
 
     }
 
 }
 
 function deleteData(index){
-    let listPeople;
-    if (localStorage.getItem('listPeople') == null){
-       listPeople = [];
+     let listPeople;
+     if (localStorage.getItem('listPeople') == null){
+        listPeople = [];
    
-    } else {
+     } else {
        listPeople = JSON.parse(localStorage.getItem('listPeople'));
-  }
-  listPeople.splice(index, 1)
-  localStorage.setItem('listPeople', JSON.stringify(listPeople));
+   }
+   listPeople.splice(index, 1)
+   localStorage.setItem('listPeople', JSON.stringify(listPeople));
 
   ReadData();
 
 } 
-
 function editData(index){
     document.getElementById('btnAdd').style.display = 'none';
     document.getElementById('btnUpdate').style.display = 'block';
@@ -106,6 +105,30 @@ function editData(index){
      } else {
         listPeople = JSON.parse(localStorage.getItem('listPeople'));
    }
+   document.getElementById('inputName').value = listPeople [index].name;
+  document.getElementById('inputDate').value = listPeople [index].date;
+  document.getElementById('inputNumber').value = listPeople [index].number;
+
+  document.querySelector('#btnUpdate').onclick = function () {
+   if (ValidateForm() == true){
+   listPeople[index].name = document.getElementById('inputName').value;
+   listPeople[index].date = document.getElementById('inputDate').value;
+   listPeople[index].number = document.getElementById('inputNumber').value;
+
+   localStorage.setItem('listPeople', JSON.stringify(listPeople))
+   ReadData();
+
+   document.getElementById('inputName').value = "";
+  document.getElementById('inputDate').value = "";
+  document.getElementById('inputNumber').value = "";
+
+  document.getElementById('btnAdd').style.display = 'block';
+  document.getElementById('btnUpdate').style.display = 'none';
+
+
+  }
+
 }
-
-
+ 
+}
+ 
