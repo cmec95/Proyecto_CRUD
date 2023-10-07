@@ -95,19 +95,18 @@ function deleteData(index){
 
 } 
 
-function deleteData(index){
+function editData(index){
+    document.getElementById('btnAdd').style.display = 'none';
+    document.getElementById('btnUpdate').style.display = 'block';
+ 
     let listPeople;
-    if (localStorage.getItem('listPeople') == null){
-       listPeople = [];
-   
-    } else {
-       listPeople = JSON.parse(localStorage.getItem('listPeople'));
-  }
-  listPeople.splice(index, 1)
-  localStorage.setItem('listPeople', JSON.stringify(listPeople));
+     if (localStorage.getItem('listPeople') == null){
+        listPeople = [];
+    
+     } else {
+        listPeople = JSON.parse(localStorage.getItem('listPeople'));
+   }
 
-  ReadData();
 
-}
 
 
